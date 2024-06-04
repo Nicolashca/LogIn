@@ -1,0 +1,2 @@
+Name|LastName|Login|EMail|Password|admin|false|2
+Nik|Tar|1|NikTar@gmail.com|11111|admin|false|87
