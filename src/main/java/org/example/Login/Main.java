@@ -12,4 +12,8 @@ public class Main {
 
         System.out.println(a);
     }
+
+    public static void forTest(){
+        System.out.println("Test");
+    }
 }
