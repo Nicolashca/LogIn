@@ -6,9 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -36,12 +34,10 @@ public class GUI extends JFrame {
 
     JButton menuButtonLogIn = new JButton("Войти");
     JButton menuButtonCreateAcc = new JButton("Создать Аккаунт");
-    JButton back1 = new JButton("Назад");
     JButton create = new JButton("Создать");
     JCheckBox isAdmin = new JCheckBox("Админ");
     JButton findPersButton = new JButton("Найти пользователя");
     JButton allUsersButton = new JButton("Все пользователи");
-    JButton changeUsersDats = new JButton("Изменить данные");
     JButton again = new JButton("Заново");
     JButton backToMenu = new JButton("<-");
     JButton backToAdmins1 = new JButton("<-");
@@ -51,13 +47,11 @@ public class GUI extends JFrame {
     JButton create2 = new JButton("Создать");
     JButton deleteUser = new JButton("Удалить");
     JButton blockUser = new JButton("Заблокировать");
-    JButton recreate = new JButton("Изменить");
     JButton backToAdmins4 = new JButton("<-");
     JButton BackToAdmins5 = new JButton("<-");
 
     private JTextField menuPassword_fild = new JTextField();
     private JTextField role = new JTextField();
-
     private JTextField name_fild = new JTextField();
     private JTextField lastName_fild = new JTextField();
     private JTextField login_fild = new JTextField();
@@ -85,7 +79,6 @@ public class GUI extends JFrame {
     String temp;
     JTable table = new JTable(data, columnNames);
     JScrollPane scrollPane = new JScrollPane(table);
-
 
     public GUI() throws IOException {
 
@@ -122,8 +115,6 @@ public class GUI extends JFrame {
         adminsPanel.setLayout(null);
         adminsPanel.setBackground(Color.LIGHT_GRAY);
         menuFrame.add(adminsPanel);
-
-
 
         creatPersPanel.setSize(600, 400);
         creatPersPanel.setLocation(0, 0);
@@ -264,7 +255,7 @@ public class GUI extends JFrame {
                 createPers.setLocation(220, 330);
             }
 
-            else
+            else if(!isOkA | !isOkU)
             {
                 JOptionPane.showMessageDialog(null, "Ошибка",
                         "InfoBox: " + "hello", JOptionPane.INFORMATION_MESSAGE);
@@ -804,23 +795,4 @@ public class GUI extends JFrame {
 
         return false;
     }
-
-    public void deletePers() {
-
-    }
-
-    public void blockPers() {
-
-    }
-
-    public static int getNumOfUsers(String fileName) throws IOException {
-
-        try (var lnr = new LineNumberReader(new FileReader(fileName))) {
-            while (lnr.readLine() != null) ;
-            return lnr.getLineNumber();
-
-        }
-    }
-
-
 }
