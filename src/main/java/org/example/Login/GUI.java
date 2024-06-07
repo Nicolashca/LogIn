@@ -49,7 +49,9 @@ public class GUI extends JFrame {
     JButton blockUser = new JButton("Заблокировать");
     JButton backToAdmins4 = new JButton("<-");
     JButton BackToAdmins5 = new JButton("<-");
-
+    JButton backToMenu2 = new JButton("<-");
+    JButton next = new JButton("->");
+    JButton previos = new JButton("<-");
 
     private JTextField menuPassword_fild = new JTextField();
     private JTextField role = new JTextField();
@@ -81,9 +83,9 @@ public class GUI extends JFrame {
     String temp;
     JTable table = new JTable(data, columnNames);
     JScrollPane scrollPane = new JScrollPane(table);
+    int current = 0;
 
     ImageIcon cat1 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat1.jpg");
-    ImageIcon cat2 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat2 (1).jpg");
     ImageIcon cat3 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat3.jpg");
     ImageIcon cat4 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat4.jpg");
     ImageIcon cat5 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat5.jpg");
@@ -97,7 +99,6 @@ public class GUI extends JFrame {
     public GUI() throws IOException {
 
         catsArray.add(cat1);
-        catsArray.add(cat2);
         catsArray.add(cat3);
         catsArray.add(cat4);
         catsArray.add(cat5);
@@ -250,6 +251,19 @@ public class GUI extends JFrame {
 
                     menuPanel.setVisible(false);
                     catPanel.setVisible(true);
+                    catPanel.add(backToMenu2);
+                    catPanel.add(next);
+                    catPanel.add(previos);
+
+                    backToMenu2.setSize(50,20);
+                    backToMenu2.setLocation(500,20);
+
+                    next.setSize(50,30);
+                    next.setLocation(510,175);
+
+                    previos.setSize(50,30);
+                    previos.setLocation(40,175);
+
 
 
                     catPanel.add(catLabel).setBounds(100,100,400,200);
@@ -795,10 +809,58 @@ public class GUI extends JFrame {
             }
         });
 
+        backToMenu2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+                catPanel.setVisible(false);
+                menuPanel.setVisible(true);
+            }
+        });
 
+        next.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+                if(current < 6)
+                {
+                    catLabel.setIcon(catsArray.get(current));
+                    System.out.println(current+" счетчик");
+                    current++;
+                }
+                else
+                {
+                    current = 0;
+                    catLabel.setIcon(catsArray.get(current));
+                    System.out.println(current+" счетчик");
+                    current++;
+                }
+
+            }
+        });
+
+        previos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                if(current >=0)
+                {
+                    catLabel.setIcon(catsArray.get(current));
+                    System.out.println(current+" счетчик");
+                    current--;
+                }
+                else
+                {
+                    current = 5;
+                    catLabel.setIcon(catsArray.get(current));
+                    System.out.println(current+" счетчик");
+                    current--;
+                }
+        }
+
+        });
     }
+
 
     public boolean isAlreadyAdded() {
 
