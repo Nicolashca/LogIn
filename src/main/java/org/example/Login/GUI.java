@@ -50,6 +50,7 @@ public class GUI extends JFrame {
     JButton backToAdmins4 = new JButton("<-");
     JButton BackToAdmins5 = new JButton("<-");
 
+
     private JTextField menuPassword_fild = new JTextField();
     private JTextField role = new JTextField();
     private JTextField name_fild = new JTextField();
@@ -70,6 +71,7 @@ public class GUI extends JFrame {
     JPanel allUsersPanel = new JPanel();
     JPanel userPanel = new JPanel();
     JPanel creatPersPanel = new JPanel();
+    JPanel catPanel = new JPanel();
 
     ArrayList<String[]> r = File1.readFromFile("Clients.txt");
 
@@ -80,8 +82,27 @@ public class GUI extends JFrame {
     JTable table = new JTable(data, columnNames);
     JScrollPane scrollPane = new JScrollPane(table);
 
+    ImageIcon cat1 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat1.jpg");
+    ImageIcon cat2 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat2 (1).jpg");
+    ImageIcon cat3 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat3.jpg");
+    ImageIcon cat4 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat4.jpg");
+    ImageIcon cat5 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat5.jpg");
+    ImageIcon cat6 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat6.jpg");
+    ImageIcon cat7 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat7.jpg");
+    JLabel catLabel = new JLabel(cat1);
+
+    ArrayList<ImageIcon> catsArray = new ArrayList<>();
+
+
     public GUI() throws IOException {
 
+        catsArray.add(cat1);
+        catsArray.add(cat2);
+        catsArray.add(cat3);
+        catsArray.add(cat4);
+        catsArray.add(cat5);
+        catsArray.add(cat6);
+        catsArray.add(cat7);
 
 
         menuFrame.setSize(600, 400);
@@ -115,6 +136,13 @@ public class GUI extends JFrame {
         adminsPanel.setLayout(null);
         adminsPanel.setBackground(Color.LIGHT_GRAY);
         menuFrame.add(adminsPanel);
+
+        catPanel.setSize(600, 400);
+        catPanel.setLocation(0, 0);
+        catPanel.setVisible(false);
+        catPanel.setLayout(null);
+        catPanel.setBackground(Color.LIGHT_GRAY);
+        menuFrame.add(catPanel);
 
         creatPersPanel.setSize(600, 400);
         creatPersPanel.setLocation(0, 0);
@@ -182,7 +210,6 @@ public class GUI extends JFrame {
         menuButtonLogIn.addActionListener(e -> {
 
             boolean isOkA = false;
-            boolean isOkU = false;
 
 
             System.out.println("Number of lines: " + r.size());
@@ -220,8 +247,15 @@ public class GUI extends JFrame {
                     JOptionPane.showMessageDialog(null, "Вы юзер",
                             "InfoBox: " + "hello", JOptionPane.INFORMATION_MESSAGE);
 
-                    isOkU = true;
-                    break;
+
+                    menuPanel.setVisible(false);
+                    catPanel.setVisible(true);
+
+
+                    catPanel.add(catLabel).setBounds(100,100,400,200);
+
+
+
                 }
 
             }
@@ -253,12 +287,6 @@ public class GUI extends JFrame {
 
                 createPers.setSize(160, 20);
                 createPers.setLocation(220, 330);
-            }
-
-            else if(!isOkA | !isOkU)
-            {
-                JOptionPane.showMessageDialog(null, "Ошибка",
-                        "InfoBox: " + "hello", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
