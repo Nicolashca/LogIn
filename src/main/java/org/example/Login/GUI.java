@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Random;
 
 
@@ -50,8 +51,8 @@ public class GUI extends JFrame {
     JButton backToAdmins4 = new JButton("<-");
     JButton BackToAdmins5 = new JButton("<-");
     JButton backToMenu2 = new JButton("<-");
-    JButton next = new JButton("->");
-    JButton previos = new JButton("<-");
+    JButton nextButton = new JButton("->");
+    JButton previosButton = new JButton("<-");
 
     private JTextField menuPassword_fild = new JTextField();
     private JTextField role = new JTextField();
@@ -83,7 +84,7 @@ public class GUI extends JFrame {
     String temp;
     JTable table = new JTable(data, columnNames);
     JScrollPane scrollPane = new JScrollPane(table);
-    int current = 0;
+    int current = 1;
 
     ImageIcon cat1 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat1.jpg");
     ImageIcon cat3 = new ImageIcon("C:\\Users\\nicol\\IdeaProjects\\LogIn\\src\\main\\java\\cats\\cat3.jpg");
@@ -94,6 +95,8 @@ public class GUI extends JFrame {
     JLabel catLabel = new JLabel(cat1);
 
     ArrayList<ImageIcon> catsArray = new ArrayList<>();
+
+    int temp2 = 0;
 
 
     public GUI() throws IOException {
@@ -252,17 +255,17 @@ public class GUI extends JFrame {
                     menuPanel.setVisible(false);
                     catPanel.setVisible(true);
                     catPanel.add(backToMenu2);
-                    catPanel.add(next);
-                    catPanel.add(previos);
+                    catPanel.add(nextButton);
+                    catPanel.add(previosButton);
 
                     backToMenu2.setSize(50,20);
                     backToMenu2.setLocation(500,20);
 
-                    next.setSize(50,30);
-                    next.setLocation(510,175);
+                    nextButton.setSize(50,30);
+                    nextButton.setLocation(510,175);
 
-                    previos.setSize(50,30);
-                    previos.setLocation(40,175);
+                    previosButton.setSize(50,30);
+                    previosButton.setLocation(40,175);
 
 
 
@@ -818,47 +821,44 @@ public class GUI extends JFrame {
             }
         });
 
-        next.addActionListener(new ActionListener() {
+
+
+        nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if(current < 6)
-                {
-                    catLabel.setIcon(catsArray.get(current));
-                    System.out.println(current+" счетчик");
-                    current++;
-                }
-                else
-                {
-                    current = 0;
-                    catLabel.setIcon(catsArray.get(current));
-                    System.out.println(current+" счетчик");
-                    current++;
-                }
+                System.out.println(temp2);
+                temp2++;
+                catLabel.setIcon(helper(catsArray));
+
 
             }
         });
 
-        previos.addActionListener(new ActionListener() {
+        previosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
 
-                if(current >=0)
-                {
-                    catLabel.setIcon(catsArray.get(current));
-                    System.out.println(current+" счетчик");
-                    current--;
-                }
-                else
-                {
-                    current = 5;
-                    catLabel.setIcon(catsArray.get(current));
-                    System.out.println(current+" счетчик");
-                    current--;
-                }
+
+                System.out.println(temp2);
+                temp2--;
+                catLabel.setIcon(helper(catsArray));
         }
 
         });
+    }
+
+    public ImageIcon helper(ArrayList<ImageIcon> a) {
+
+        if (temp2 >= a.size())
+            temp2 = 0;
+
+
+        else if (temp2 < 0 )
+            temp2 = a.size() - 1;
+
+
+        return a.get(temp2);
     }
 
 
@@ -871,7 +871,6 @@ public class GUI extends JFrame {
             if (i[2].equals(login_fild.getText()))
             {
                 isOk = true;
-
             }
 
             if (isOk) {
